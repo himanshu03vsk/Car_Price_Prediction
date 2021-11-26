@@ -10,6 +10,7 @@
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
+        <!-- <link rel="stylesheet" href="../templates/power.css"> -->
         <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -11280,6 +11281,61 @@ textarea.form-control-lg {
     padding-left: 1.5rem !important;
   }
 
+  .switch {
+	 position: relative;
+	 width: 14rem;
+	 padding: 0 1rem;
+	 font-family: verdana;
+}
+ .switch:before {
+	 content: ' ';
+	 position: absolute;
+	 left: 0;
+	 z-index: -1;
+	 width: 100%;
+	 height: 3rem;
+	 background: #000;
+	 border-radius: 30px;
+}
+ .switch__label {
+	 display: inline-block;
+	 width: 2rem;
+	 padding: 1rem;
+	 text-align: center;
+	 cursor: pointer;
+	 transition: color 200ms ease-out;
+}
+ .switch__label:hover {
+	 color: white;
+}
+ .switch__indicator {
+	 width: 4rem;
+	 height: 4rem;
+	 position: absolute;
+	 top: -0.5rem;
+	 left: 0;
+	 background: blue;
+	 border-radius: 50%;
+	 transition: transform 600ms cubic-bezier(0.02, 0.94, 0.09, 0.97), background 300ms cubic-bezier(0.17, 0.67, 0.14, 1.03);
+	 transform: translate3d(1rem, 0, 0);
+}
+ .switch input#D:checked ~ .switch__indicator {
+	 background: #aa1b1b;
+	 transform: translate3d(1.0rem, 0, 0);
+}
+ .switch input#P:checked ~ .switch__indicator {
+	 background: #f50;
+	 transform: translate3d(5.9rem, 0, 0);
+}
+ .switch input#E:checked ~ .switch__indicator {
+	 background: #33c629;
+	 transform: translate3d(12.05rem, 0, 0);
+}
+ .switch input[type="radio"]:not(:checked), .switch input[type="radio"]:checked {
+	 display: none;
+}
+ 
+
   .px-xxl-5 {
     padding-right: 3rem !important;
     padding-left: 3rem !important;
@@ -11563,6 +11619,9 @@ body {
   }
 }
 
+
+
+
 .btn {
   box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
   padding: 1.25rem 2rem;
@@ -11572,6 +11631,8 @@ body {
   letter-spacing: 0.15rem;
   border: 0;
 }
+
+
 
 .masthead {
   position: relative;
@@ -11599,6 +11660,8 @@ body {
   max-width: 20rem;
   font-size: 1rem;
 }
+
+
 @media (min-width: 768px) {
   .masthead h1, .masthead .h1 {
     font-size: 4rem;
@@ -11772,6 +11835,203 @@ input.text: :focus{
 }
 
 
+/* power */
+.power-switch {
+  --color-invert: #ffffff;
+  --width: 150px;
+  --height: 150px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--width);
+  height: var(--height);
+}
+.power-switch .button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.power-switch .button:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: radial-gradient(circle closest-side, var(--color-invert), transparent);
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
+  transform: perspective(1px) translateZ(0);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.power-switch .button .power-on,
+.power-switch .button .power-off {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  fill: none;
+  stroke: var(--color-invert);
+  stroke-width: 8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.power-switch .button .power-on .line,
+.power-switch .button .power-off .line {
+  opacity: 0.2;
+}
+.power-switch .button .power-on .circle,
+.power-switch .button .power-off .circle {
+  opacity: 0.2;
+  transform: rotate(-58deg);
+  transform-origin: center 80px;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 40;
+}
+.power-switch .button .power-on {
+  filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.8));
+}
+.power-switch .button .power-on .line {
+  opacity: 0;
+  transition: opacity 0.3s ease 1s;
+}
+.power-switch .button .power-on .circle {
+  opacity: 1;
+  stroke-dashoffset: 220;
+  transition: transform 0s ease, stroke-dashoffset 1s ease 0s;
+}
+.power-switch input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0;
+}
+.power-switch input:checked + .button:after {
+  opacity: 0.15;
+  transform: scale(2) perspective(1px) translateZ(0);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.power-switch input:checked + .button .power-on,
+.power-switch input:checked + .button .power-off {
+  -webkit-animation: click-animation 0.3s ease forwards;
+          animation: click-animation 0.3s ease forwards;
+  transform: scale(1);
+}
+.power-switch input:checked + .button .power-on .line,
+.power-switch input:checked + .button .power-off .line {
+  -webkit-animation: line-animation 0.8s ease-in forwards;
+          animation: line-animation 0.8s ease-in forwards;
+}
+.power-switch input:checked + .button .power-on .circle,
+.power-switch input:checked + .button .power-off .circle {
+  transform: rotate(302deg);
+}
+.power-switch input:checked + .button .power-on .line {
+  opacity: 1;
+  transition: opacity 0.05s ease-in 0.55s;
+}
+.power-switch input:checked + .button .power-on .circle {
+  transform: rotate(302deg);
+  stroke-dashoffset: 40;
+  transition: transform 0.4s ease 0.2s, stroke-dashoffset 0.4s ease 0.2s;
+}
+
+@-webkit-keyframes line-animation {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(10px);
+  }
+  40% {
+    transform: translateY(-25px);
+  }
+  60% {
+    transform: translateY(-25px);
+  }
+  85% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes line-animation {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(10px);
+  }
+  40% {
+    transform: translateY(-25px);
+  }
+  60% {
+    transform: translateY(-25px);
+  }
+  85% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+@-webkit-keyframes click-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes click-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.pwr_button {
+  background: #1B1A23;
+  height: 100vh;
+  font: 400 16px "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .socials {
+  position: fixed;
+  display: block;
+  left: 20px;
+  bottom: 20px;
+}
+body .socials > a {
+  display: block;
+  width: 30px;
+  opacity: 0.2;
+  transform: scale(var(--scale, 0.8));
+  transition: transform 0.3s cubic-bezier(0.38, -0.12, 0.24, 1.91);
+}
+body .socials > a:hover {
+  --scale: 1;
+}
 
 #select_value{
   width: 48px;
@@ -11807,6 +12067,10 @@ input.text: :focus{
 .footer {
   padding: 5rem 0;
 }
+
+
+/* power button css */
+
         </style>
         <!-- <link href="../css/styles.css" rel="stylesheet" /> -->
     </head>
@@ -11865,7 +12129,7 @@ input.text: :focus{
                             <h4 class="text-white">Year of Purchase</h4>
                             <p class="mb-0 text-white-50">No not that misty, its just... the mist is a mystery...i wanna dig myself a hole.</p>
                             <hr class="d-none d-lg-block mb-0 ms-0" />
-                            <form  class="form-inline my-2 my-lg-O" style="margin-right: 350px;margin-left: 350px;">
+                            <form name="car" class="form-inline my-2 my-lg-O" style="margin-right: 350px;margin-left: 350px;">
                                 <select onchange="window.location.hash = 'onroad';" class="form-select" aria-label="Default select example" style="color: #fff; background-color: #000;" >
                                   <option selected value="2021">2021</option>
                                     {% for n in range(2020,1950,-1) %}
@@ -11895,7 +12159,8 @@ input.text: :focus{
                             <h4 class="text-white">On Road Price(₹)</h4>
                             <p class="mb-0 text-white-50">Another example of a project with its respective description. Again, clearly piracy at its finest !</p>
                             <hr class="d-none d-lg-block mb-0 me-0" />
-                            <input class="car_price"autocomplete="off" class="text" style="border-color: #fff; color: #fff;background-color: #000; width: 40%; height: 31px;margin: 10px 0px 0px 0px;padding: 1px 0px 3px 18px;border-radius: 14px;" type="text" name="price" placeholder="eg: 20000">
+                            <label style="color:#fff" for="price">Enter Price in Lakhs only.</label><br>
+                            <input class="car_price" autocomplete="off" class="text" style="border-color: #fff; color: #fff;background-color: #000; width: 40%; height: 31px;margin: 10px 0px 0px 0px;padding: 1px 0px 3px 18px;border-radius: 14px;" type="text" name="price" placeholder="Ex:5.46">
                             <div style="width: 100%; height: 28px;"><button type="button" onclick="window.location.hash = 'kilometer';" class="next" style="border-radius: 14px;width: 4%;height: 127%;color: #fff;background-color: #000;margin-top: 12px;">></button></div>
                           </div>
                     </div>
@@ -11954,17 +12219,22 @@ input.text: :focus{
                             <h4 class="text-white">Fuel Type</h4>
                             <p class="mb-0 text-white-50">No not that misty, its just... the mist is a mystery...i wanna dig myself a hole.</p>
                             <hr class="d-none d-lg-block mb-0 ms-0" />
-                            <div>
-                              <div style="padding: 0% 21% 0% 21%;">
-                                <label style="color: #fff;" class="tog" for="tog">Manual</label>
-                                <label class="toggle" for="myToggle">
-                                  <input class="toggle__input" name="" type="checkbox" id="myToggle">
-                                  <div class="toggle__fill"></div>
-                              </label>
-                              <label class="toggle" for="myToggle">Automatic
-                              <span id="trans"></span>
-                              </div>
-                        </div>
+                            <div class="switch" style="width: 100%;">
+                              <input name="diesel" type="radio" />
+                              <input name="switch" id="D" type="radio" checked/>
+                              <label for="D" class="switch__label" style="color: #f10; width: 80px;">Diesel</label>
+                              <input name="petrol"  type="radio" />
+                              <input name="switch" id="P" type="radio" />
+                              <label for="P" class="switch__label" style="color: #f50; width: 80px;">Petrol</label>
+                              <input name="electric"  type="radio" />
+                              <input name="switch" id="E" type="radio" />
+                              <label for="E" class="switch__label" style="color: #2f0; width: 80px;">Electric</label>
+                              <div class="switch__indicator" style="margin: 0px 0px 0px 307px;"/></div>
+                              <br>
+                              <br>
+                              <div class="fuel" >
+                              <p id="selected_fuel" style=" color: #fff;">You've selected Diesel fuel type</p></div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -11979,11 +12249,19 @@ input.text: :focus{
                             <h4 class="text-white">Dealer/Individual</h4>
                             <p class="mb-0 text-white-50">Another example of a project with its respective description. Again, clearly piracy at its finest !</p>
                             <hr class="d-none d-lg-block mb-0 me-0" />
+                            <br>
+                            <select style="color: #fff; background-color: #000;width: 50%;margin-left: 235px; text-align: center;" onchange="window.location.hash = 'transmission';" class="form-select" aria-label="Default select example" style="color: #fff; background-color: #000;" >
+                            <option value="dealer">Dealer</option>
+                            <option value="individual">Individual</option>
+                          </select>
+                            <div style="width: 96%; height: 28px;"><button type="button" onclick="window.location.hash = 'transmission';" class="next" style="border-radius: 14px;width: 4%;height: 127%;color: #fff;background-color: #000;margin-top: 12px;">></button></div>
+                          
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <section id="transmission">
         <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
             <div class="col-lg-6"><img class="img-fluid" src="../static/pgotos/jz-the-creator-OF4C19_40mU-unsplash.jpg" alt="..." /></div>
             <div class="col-lg-6">
@@ -11991,23 +12269,53 @@ input.text: :focus{
                     <div class="d-flex h-100">
                         <div class="project-text w-100 my-auto text-center text-lg-left">
                             <h4 class="text-white">Transmission</h4>
-                            <p class="mb-0 text-white-50">No not that misty, its just... the mist is a mystery...i wanna dig myself a hole.</p>
+                            <p class="mb-0 text-white-50">Please Select the transmission type of your vehicle.</p>
                             <hr class="d-none d-lg-block mb-0 ms-0" />
+                            <div>
+                              <div style="padding: 0% 21% 0% 21%;">
+                                <label style="color: #fff;" class="tog" for="tog">Manual</label>
+                                <label class="toggle" for="myToggle">
+                                  <input class="toggle__input" name="" type="checkbox" id="myToggle">
+                                  <div class="toggle__fill"></div>
+                              </label>
+                              <label class="toggle" for="myToggle">Automatic</label><br>
+                              <div style="margin: 24px 0px 0px 24px;" class="text">
+                              <p style="color: #fff;" id="trans">A Manual Lover!</p></div>
+                              </div>
+                        </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+      </section>
     </div>
-</section>
-<section>
-            
-    
 
-    <style>
-        
-    </style>
-</section>
+<div class="pwr_button" style="height: 367px; background-color: #000;">
+  <div class="power-switch">
+    <input id="submit" type="checkbox" />
+    <div class="button">
+      <svg class="power-off">
+        <use xlink:href="#line" class="line" />
+        <use xlink:href="#circle" class="circle" />
+      </svg>
+      <svg class="power-on">
+        <use xlink:href="#line" class="line" />
+        <use xlink:href="#circle" class="circle" />
+      </svg>
+    </div>
+  </div>
+  
+  <!-- SVG -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="line">
+      <line x1="75" y1="34" x2="75" y2="58"/>
+    </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="circle">
+      <circle cx="75" cy="80" r="35"/>
+    </symbol>
+  </svg></div>
+
 <!-- Contact-->
 <section id='contact' class="contact-section bg-black">
     <div class="container px-4 px-lg-5">
@@ -12115,8 +12423,10 @@ var ownerNum = document.getElementById('owner_num');
 var checkbox = document.getElementById('myToggle');
 checkbox.oninput = function(){
   if (checkbox.checked == true) {
-    document.getElementById('trans').innerHTML = An Automatic Driver
-  
+    document.getElementById('trans').innerHTML ="An Automatic Driver!";
+  }
+  else{
+    document.getElementById('trans').innerHTML ="A Manual Lover!";
   }
   
 }
@@ -12127,16 +12437,16 @@ owners.oninput  = function(){
     ownerNum.innerHTML = "You are the first owner";
   }
   else if (t2 == 1) {
-    ownerNum.innerHTML = t2 + " Individual"
+    ownerNum.innerHTML = t2 + " Individual";
     
   } else {
-    ownerNum.innerHTML = t2+ " Individuals"
+    ownerNum.innerHTML = t2+ " Individuals";
     
   }
 };
 slider.oninput = function(){
     var t1 =  this.value; 
-    Selectvalue.innerHTML = t1 + " KM"
+    Selectvalue.innerHTML = t1 + " KM";
     if (this.value<25000) {
       document.getElementById('select_value').style.backgroundColor = "#0db750";
     }
@@ -12152,6 +12462,35 @@ slider.oninput = function(){
     }
 }
 
+
+var diesel = document.getElementById('D');
+var petrol = document.getElementById('P');
+var electric = document.getElementById('E');
+
+diesel.onclick = function(){
+  document.getElementsByName('diesel')[0].checked = true;
+  document.getElementById('selected_fuel').innerHTML = "You've selected Diesel fuel type";
+  document.getElementsByName('petrol')[0].checked = false;
+  document.getElementsByName('electric')[0].checked = false;
+ }
+
+petrol.onclick = function(){
+  document.getElementsByName('petrol')[0].checked = true;
+  document.getElementById('selected_fuel').innerHTML = "You've selected Petrol fuel type";
+  document.getElementsByName('electric')[0].checked = false;
+  document.getElementsByName('diesel')[0].checked = false;
+ }
+
+electric.onclick = function(){
+  document.getElementsByName('electric')[0].checked = true;
+  document.getElementById('selected_fuel').innerHTML = "You've selected Electric fuel type";
+  document.getElementsByName('diesel')[0].checked = false;
+  document.getElementsByName('petrol')[0].checked = false;
+ }
+
+
+ var submitbox = document.getElementById('submit');
+ 
 
     </script>
 <!-- <script type="text/javascript">
