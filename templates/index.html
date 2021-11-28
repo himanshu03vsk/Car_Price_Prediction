@@ -11303,33 +11303,39 @@ textarea.form-control-lg {
 	 padding: 1rem;
 	 text-align: center;
 	 cursor: pointer;
+   border-color: #fff;
+   border-radius: 40px;
+   border-width: 2px;
 	 transition: color 200ms ease-out;
 }
  .switch__label:hover {
 	 color: white;
 }
- .switch__indicator {
+ /* .switch__indicator {
 	 width: 4rem;
 	 height: 4rem;
 	 position: absolute;
 	 top: -0.5rem;
 	 left: 0;
-	 background: blue;
 	 border-radius: 50%;
 	 transition: transform 600ms cubic-bezier(0.02, 0.94, 0.09, 0.97), background 300ms cubic-bezier(0.17, 0.67, 0.14, 1.03);
-	 transform: translate3d(1rem, 0, 0);
+	 transform: translate3d(1rem, 0, 0); */
 }
  .switch input#D:checked ~ .switch__indicator {
 	 background: #aa1b1b;
-	 transform: translate3d(1.0rem, 0, 0);
+	 transform: translate3d(400%, 0, 0);
+
+   /* transform: translate3d(1.0%, 0, 0); */
 }
  .switch input#P:checked ~ .switch__indicator {
 	 background: #f50;
-	 transform: translate3d(5.9rem, 0, 0);
+	 transform: translate3d(21.5rem, 3.5rem, 0);
+   /* transform: translate3d(201%, 0, 0); */
 }
  .switch input#E:checked ~ .switch__indicator {
 	 background: #33c629;
-	 transform: translate3d(12.05rem, 0, 0);
+   transform: translate3d(21.5rem, 7rem, 0);
+	 /* transform: translate3d(376%, 0, 0); */
 }
  .switch input[type="radio"]:not(:checked), .switch input[type="radio"]:checked {
 	 display: none;
@@ -12129,7 +12135,8 @@ body .socials > a:hover {
                             <h4 class="text-white">Year of Purchase</h4>
                             <p class="mb-0 text-white-50">No not that misty, its just... the mist is a mystery...i wanna dig myself a hole.</p>
                             <hr class="d-none d-lg-block mb-0 ms-0" />
-                            <form method="post" action="/submit" name="car" class="form-inline my-2 my-lg-O" style="margin-right: 350px;margin-left: 350px;">
+                            <form method="post" action="/submit" name="car" class="form-inline my-2 my-lg-O" style="width: auto; margin: 20%;">
+                            <!-- <form method="post" action="/submit" name="car" class="form-inline my-2 my-lg-O" style="margin-right: 350px;margin-left: 350px;"> -->
                                 <select name="year" onchange="window.location.hash = 'onroad';" class="form-select" aria-label="Default select example" style="color: #fff; background-color: #000;" >
                                   <option selected value="2021">2021</option>
                                     {% for n in range(2020,1950,-1) %}
@@ -12179,7 +12186,7 @@ body .socials > a:hover {
                             <hr class="d-none d-lg-block mb-0 ms-0" />
                             <div>
                               <div style="width: 98%;padding: 0% 3% 0% 6%;">
-                            <input type="range" name="km_driven" class="form-range slider" min="0" value="2000" max="100000" step="1000" id="customRange3"> </div>
+                            <input type="range" name="km_driven" class="form-range slider" min="0" value="2000" max="300000" step="1000" id="customRange3"> </div>
                             <div style="background-color: rgb(13, 183, 80);width: inherit;margin: 2% 41% 1% 42%;" id="select_value">2000 KM</div>   </div>
 
 
@@ -12203,7 +12210,7 @@ body .socials > a:hover {
                             <hr class="d-none d-lg-block mb-0 me-0" />
                             <div>
                               <div style="padding: 0% 21% 0% 21%;">
-                            <input name="no_of_owners" type="range" class="form-range slider" min="0" value="1" max="5" step="1" id="owners"> </div>
+                            <input name="no_of_owners" type="range" class="form-range slider" min="0" value="0" max="3" step="1" id="owners"> </div>
                             <div style="background-color: #000; color: #fff;border-radius: 4px; width: inherit;margin: 2% 30% 1% 30%;" id="owner_num">0</div>   </div>
                         </div>
                     </div>
@@ -12222,14 +12229,15 @@ body .socials > a:hover {
                             <div class="switch" style="width: 100%;">
                               <input name="diesel" type="radio" />
                               <input name="switch" id="D" type="radio" checked/>
-                              <label for="D" class="switch__label" style="color: #f10; width: 80px;">Diesel</label>
+                              <label name="dlabel" for="D" class="switch__label" style="border-color: rgb(255, 17, 0);color: #f10;border-radius: 48px;border-style: solid;border-width: 2px; width: 12%;">Diesel</label><br>
                               <input name="petrol"  type="radio" />
                               <input name="switch" id="P" type="radio" />
-                              <label for="P" class="switch__label" style="color: #f50; width: 80px;">Petrol</label>
+                              <label name="plabel" for="P" class="switch__label" style="color: #f50; width: 12%;">Petrol</label><br>
                               <input name="CNG"  type="radio" />
-                              <input name="switch" id="E" type="radio" />
-                              <label for="E" class="switch__label" style="color: #2f0; width: 80px;">CNG</label>
-                              <div class="switch__indicator" style="margin: 0px 0px 0px 307px;"/></div>
+                              <input  name="switch" id="E" type="radio" />
+                              <label  name="clabel" for="E" class="switch__label" style="color: #2f0; width: 12%;">CNG</label><br>
+
+                              <!-- <div class="switch__indicator" style="margin: 0 100px"/></div> -->
                               <br>
                               <br>
                               <div class="fuel" >
@@ -12250,11 +12258,12 @@ body .socials > a:hover {
                             <p class="mb-0 text-white-50">Another example of a project with its respective description. Again, clearly piracy at its finest !</p>
                             <hr class="d-none d-lg-block mb-0 me-0" />
                             <br>
-                            <select name="buyer_kind" style="color: #fff; background-color: #000;width: 50%;margin-left: 235px; text-align: center;" onchange="window.location.hash = 'transmission';" class="form-select" aria-label="Default select example" style="color: #fff; background-color: #000;" >
+                            <!-- <select name="buyer_kind" style="color: #fff; background-color: #000;width: 50%;margin-left: 235px; text-align: center;" onchange="window.location.hash = 'transmission';" class="form-select" aria-label="Default select example" style="color: #fff; background-color: #000;" > -->
+                            <select name="buyer_kind" style="color: #fff; background-color: #000;width: auto; margin: auto; text-align: center;" onchange="window.location.hash = 'transmission';" class="form-select" aria-label="Default select example" style="color: #fff; background-color: #000;" >
                             <option value="dealer">Dealer</option>
                             <option value="individual">Individual</option>
                           </select>
-                            <div style="width: 96%; height: 28px;"><button type="button" onclick="window.location.hash = 'transmission';" class="next" style="border-radius: 14px;width: 4%;height: 127%;color: #fff;background-color: #000;margin-top: 12px;">></button></div>
+                            <div style="width: auto; height: 28px;"><button type="button" onclick="window.location.hash = 'transmission';" class="next" style="border-radius: 14px;width: 4%;height: 127%;color: #fff;background-color: #000;margin-top: 12px;">></button></div>
                           
                         </div>
                     </div>
@@ -12449,17 +12458,17 @@ owners.oninput  = function(){
 slider.oninput = function(){
     var t1 =  this.value; 
     Selectvalue.innerHTML = t1 + " KM";
-    if (this.value<25000) {
+    if (this.value<75000) {
       document.getElementById('select_value').style.backgroundColor = "#0db750";
     }
     
-    if (parseInt(this.value)<50000 && this.value>25000) {
+    if (parseInt(this.value)<150000 && this.value>75000) {
       document.getElementById('select_value').style.backgroundColor = "#c6a31c";
     }
-    if (this.value<75000 && this.value>50000) {
+    if (this.value<225000 && this.value>150000) {
       document.getElementById('select_value').style.backgroundColor = "#ae5506";
     }
-    if (this.value>90000) {
+    if (this.value>225000) {
       document.getElementById('select_value').style.backgroundColor = "#ae0000";
     }
 }
@@ -12472,20 +12481,32 @@ var electric = document.getElementById('E');
 diesel.onclick = function(){
   document.getElementsByName('diesel')[0].checked = true;
   document.getElementById('selected_fuel').innerHTML = "You've selected Diesel fuel type";
+  document.getElementsByName('dlabel')[0].style.borderStyle = "solid";
+  document.getElementsByName('dlabel')[0].style.borderColor = "rgb(255, 17, 0)";
+  document.getElementsByName('plabel')[0].style.borderStyle = "none";
+  document.getElementsByName('clabel')[0].style.borderStyle = "none";
   document.getElementsByName('petrol')[0].checked = false;
-  document.getElementsByName('electric')[0].checked = false;
+  document.getElementsByName('CNG')[0].checked = false;
  }
 
 petrol.onclick = function(){
   document.getElementsByName('petrol')[0].checked = true;
   document.getElementById('selected_fuel').innerHTML = "You've selected Petrol fuel type";
-  document.getElementsByName('electric')[0].checked = false;
+  document.getElementsByName('dlabel')[0].style.borderStyle = "none";
+  document.getElementsByName('plabel')[0].style.borderColor = "rgb(255, 85, 0)";
+  document.getElementsByName('plabel')[0].style.borderStyle = "solid";
+  document.getElementsByName('clabel')[0].style.borderStyle = "none";
+  document.getElementsByName('CNG')[0].checked = false;
   document.getElementsByName('diesel')[0].checked = false;
  }
 
 electric.onclick = function(){
-  document.getElementsByName('electric')[0].checked = true;
+  document.getElementsByName('CNG')[0].checked = true;
   document.getElementById('selected_fuel').innerHTML = "You've selected CNG fuel type";
+  document.getElementsByName('dlabel')[0].style.borderStyle = "none";
+  document.getElementsByName('clabel')[0].style.borderColor = "rgb(34, 255, 0)";
+  document.getElementsByName('plabel')[0].style.borderStyle = "none";
+  document.getElementsByName('clabel')[0].style.borderStyle = "solid";
   document.getElementsByName('diesel')[0].checked = false;
   document.getElementsByName('petrol')[0].checked = false;
  }

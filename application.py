@@ -27,13 +27,13 @@ def after_request(response):
 def final_output(price, km_driven,  no_of_owners ,age, diesel, petrol, seller_type_individual,transmission_manual):
     # importing libraries
     import pickle
-    from sklearn.preprocessing import StandardScaler
-    input_parameters = [[price, km_driven,  no_of_owners ,age, diesel, petrol, seller_type_individual, transmission_manual]]
-    sc = StandardScaler()
     import numpy as np
+    from joblib import load
+    input_parameters = [[price, km_driven,  no_of_owners ,age, diesel, petrol, seller_type_individual, transmission_manual]]
+    sc = load('scaler_model')
+
     ip = np.array(input_parameters)
-    ip.reshape(1,-1)
-    input_parameters_scaled = sc.fit_transform(input_parameters)
+    input_parameters_scaled = sc.transform(ip)
 
     with open('random_forest_regression_model.pkl', 'rb') as file:
         predictor = pickle.load(file)
