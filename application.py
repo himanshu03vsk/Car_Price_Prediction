@@ -1,7 +1,7 @@
 import os
 
 # from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 # from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
@@ -9,9 +9,13 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 # from helpers import apology, login_required, lookup, usd
 
+
+# PEOPLE_FOLDER = os.path.join('static', 'people_photo')
+
+
 # Configure application
 app = Flask(__name__)
-
+# app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 # Ensure templates are auto-reloaded
 # app.config["TEMPLATES_AUTO_RELOAD"] = True
 
@@ -39,8 +43,6 @@ def final_output(price, km_driven,  no_of_owners ,age, diesel, petrol, seller_ty
         predictor = pickle.load(file)
     result = predictor.predict(input_parameters_scaled)
     return result
-
-
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -84,18 +86,11 @@ def submit():
             diesel = 0
             # fuel_type = fuel[2]
         output = final_output(price, km_driven,  no_of_owners ,age, diesel, petrol, seller_type_individual, transmission_manual)
-        return f"{output}"
+        return render_template("submit.html", result=output)
 
 
-    
-     
-        
-
-    # print(request.form["car"])
-    return "<h1>Hello</h1>"
-
-
-
+if __name__ == '__main__':
+    app.run()
 
 
 

@@ -5,8 +5,8 @@
 		<title>Bootstrap 4</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 		<!-- Font awesome -->
-		<link rel="stylesheet" type="text/css" href="\templates\font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="\templates\butt.css">
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='font-awesome.min.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='butt.css')}}">
 
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -25,19 +25,21 @@
 						<div class="col-md-8 p-3 mt-5">
 							<h2 class="text-center display-3">Results</h2>
 						</div>
+						<h2>Your Car's Final resale price is: {{'%0.2f'| format(result)}} Lakhs </h2>
+						
 					</div>
+					<br><br><br><br>
 
 
 
 					<div class="form-group row justify-content-center">
 									<div class="col-md-6">
-										<button type="submit" onclick="window.location.href='/templates/index.html#page-top'" class="btn btn-primary btn-block">Back To Home</button>
+										<button type="submit" onclick="window.location.href='/'" class="btn btn-primary btn-block">Back To Home</button>
 
 									</div>
 
-								</div>
 
-							</form>
+								</div>
 
 
 							<p class="text-center t">Created By: Team InCiTe</p>
