@@ -1,0 +1,18 @@
+This project involves the use of a regression model using the random forest algorithm to predict the price of used cars in India on the basis of difference in the 
+year that the car was bought as to the current year, current market price, kilometers driven, type of fuel, type of sellers and transmission.
+The model was made using Python and machine learning concepts.
+The website was made using js,css,html and Flask for framework.
+
+Instruction to launch model locally:
+
+Step 1: Python and Flask should be installed in your device.
+        "pip install Flask" - if flask is not installed.
+Step 2: Open terminal/ command prompt:
+Step 3: Using the console, navigate to the project folder using the cd command.( for eg: cd /Users/ankit/Downloads/Car_Price_Prediction-master-2/)
+Step 4: for Linux/Mac run this code : export FLASK_APP=application.py
+        for windows run this code : "set FLASK_APP=application.py"
+Step 5:  Run the Flask application with:
+         "flask run"
+Step 6: The output prints out a confirmation message and the address.
+        Copy and paste the address into the browser to see the project running.
+        Now you can interact with the model.
